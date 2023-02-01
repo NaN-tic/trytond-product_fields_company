@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<!-- The COPYRIGHT file at the top level of
+this repository contains the full copyright notices and license terms. -->
+<tryton>
+    <data>
+      <!-- template view form -->
+      <record model="ir.ui.view" id="template_view_form">
+          <field name="model">product.template</field>
+          <field name="name">template_form</field>
+          <field name="inherit" ref="product.template_view_form"/>
+      </record>
+      <record model="ir.ui.view" id="company_fields_view_tree">
+          <field name="model">product.template.company_fields</field>
+          <field name="name">company_fields_tree</field>
+          <field name="type">tree</field>
+      </record>
+    </data>
+
+    <data depends="purchase">
+        <record model="ir.ui.view" id="company_purchase_field_view_tree">
+          <field name="model">product.template.company_fields</field>
+          <field name="name">company_fields_purchase_tree</field>
+          <field name="inherit" ref="product_fields_company.company_fields_view_tree"/>
+      </record>
+    </data>
+
+</tryton>

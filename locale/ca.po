@@ -1,0 +1,71 @@
+#
+msgid ""
+msgstr "Content-Type: text/plain; charset=utf-8\n"
+
+msgctxt "field:product.product,company_fields:"
+msgid "Company Fields"
+msgstr "Camps de l'empresa"
+
+msgctxt "field:product.product,company_purchasable:"
+msgid "Company Purchasable"
+msgstr "Comprable en Empresa"
+
+msgctxt "field:product.product,company_salable:"
+msgid "Company Salable"
+msgstr "Vendible en Empresa"
+
+msgctxt "field:product.template,company_fields:"
+msgid "Company Fields"
+msgstr "Camps de l'empresa"
+
+msgctxt "field:product.template,company_purchasable:"
+msgid "Company Purchasable"
+msgstr "Comprable en Empresa"
+
+msgctxt "field:product.template,company_salable:"
+msgid "Company Salable"
+msgstr "Vendible en Empresa"
+
+msgctxt "field:product.template.company_fields,company:"
+msgid "Company"
+msgstr "Companyia"
+
+msgctxt "field:product.template.company_fields,purchasable:"
+msgid "Purchasable"
+msgstr "Pot ser comprat"
+
+msgctxt "field:product.template.company_fields,purchasble:"
+msgid "Purchasable"
+msgstr "Pot ser comprat"
+
+msgctxt "field:product.template.company_fields,salable:"
+msgid "Salable"
+msgstr "Vendible"
+
+msgctxt "field:product.template.company_fields,template:"
+msgid "Template"
+msgstr "Plantilla"
+
+msgctxt "field:product.template.company_fields,template_purchasable:"
+msgid "Template Purchasable"
+msgstr "Comprable Plantilla"
+
+msgctxt "field:product.template.company_fields,template_salable:"
+msgid "Template Salable"
+msgstr "Vendible en Plantilla"
+
+msgctxt "field:purchase.line,company_purchasable:"
+msgid "Company Purchasable"
+msgstr "Comprable en Empresa"
+
+msgctxt "field:sale.line,company_salable:"
+msgid "Company Salable"
+msgstr "Vendible en Empresa"
+
+msgctxt "model:product.template.company_fields,name:"
+msgid "Product Template Company Fields"
+msgstr "Camps d'empresa de plantilla de producte"
+
+msgctxt "view:product.template:"
+msgid "Multicompany"
+msgstr "Multiempresa"
