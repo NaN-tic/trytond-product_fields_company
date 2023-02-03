@@ -62,6 +62,10 @@ msgctxt "field:sale.line,company_salable:"
 msgid "Company Salable"
 msgstr "Vendible en Empresa"
 
+msgctxt "model:ir.message,text:msg_company_unique"
+msgid "The company must be unique by template."
+msgstr "L'Empresa ha de ser única per plantilla"
+
 msgctxt "model:product.template.company_fields,name:"
 msgid "Product Template Company Fields"
 msgstr "Camps d'empresa de plantilla de producte"
