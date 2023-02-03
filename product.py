@@ -1,4 +1,4 @@
-from trytond.model import ModelView, ModelSQL, fields
+from trytond.model import ModelView, ModelSQL, fields, Unique
 from trytond.pool import Pool, PoolMeta
 from trytond.transaction import Transaction
 from trytond.pyson import Eval
@@ -11,7 +11,6 @@ class Template(metaclass=PoolMeta):
         'template', 'Company Fields')
     company_salable = fields.Function(fields.Boolean('Company Salable'),
         'get_company_salable', searcher='search_company_salable')
-
 
     @classmethod
     def get_company_salable(cls, templates, name):
@@ -77,7 +76,6 @@ class Product(metaclass=PoolMeta):
     company_salable = fields.Function(fields.Boolean('Company Salable'),
         'on_change_with_company_salable', searcher='search_company_salable')
 
-
     @fields.depends('template', '_parent_template.company_salable')
     def on_change_with_company_salable(self, name=None):
         return self.template and self.template.company_salable or False
@@ -85,7 +83,6 @@ class Product(metaclass=PoolMeta):
     @classmethod
     def search_company_salable(cls, name, clause):
         return [('template.company_salable',) + tuple(clause[1:])]
-
 
 
 class ProductCompanyFields(ModelSQL, ModelView):
@@ -101,19 +98,30 @@ class ProductCompanyFields(ModelSQL, ModelView):
     template_salable = fields.Function(fields.Boolean('Template Salable'),
         'on_change_with_template_salable')
 
-    @fields.depends('template', '_parent_template.salable')
+    @fields.depends('template', 'company', '_parent_template.salable')
     def on_change_with_template_salable(self, name=None):
         return self.template and self.template.salable or False
+
+    @classmethod
+    def __setup__(cls):
+        super().__setup__()
+        t = cls.__table__()
+        cls._sql_constraints += [
+            ('template_company_uniq', Unique(t, t.template, t.company),
+                'product_fields_company.msg_company_unique'),
+        ]
+
 
 class ProductCompanyFieldsPurchase(metaclass=PoolMeta):
     __name__ = 'product.template.company_fields'
 
     purchasable = fields.Boolean('Purchasable', states={
-        'readonly': Eval('template.purchasable', False)})
+        'readonly': ~Eval('template_purchasable', False)},
+        depends=['template_purchasable'])
     template_purchasable = fields.Function(fields.Boolean(
-        'Template Purchasable'),'on_change_with_template_salable')
+        'Template Purchasable'),'on_change_with_template_purchasable')
 
-    @fields.depends('template',  '_parent_template.purchasable')
+    @fields.depends('template', 'company', '_parent_template.purchasable')
     def on_change_with_template_purchasable(self, name=None):
         return self.template and self.template.purchasable or False
 
