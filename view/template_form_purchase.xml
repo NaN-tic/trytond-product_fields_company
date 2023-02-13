@@ -2,11 +2,9 @@
 <!-- The COPYRIGHT file at the top level of
 this repository contains the full copyright notices and license terms. -->
 <data>
-    <xpath expr="/form/notebook/page[@id='multicompany']/field[@name='company_salable" position="after">
-      <page id="multicompany" string="Multicompany">
+    <xpath expr="/form/notebook/page[@id='multicompany']/field[@name='company_salable']" position="after">
           <label name="company_purchasable" />
           <field name="company_purchasable" />
-      </page>
     </xpath>
 </data>
 
