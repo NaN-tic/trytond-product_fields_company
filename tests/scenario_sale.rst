@@ -115,7 +115,7 @@ Create product::
     >>> ProductTemplate = Model.get('product.template')
 
     >>> template = ProductTemplate()
-    >>> template.name = 'product_salable'
+    >>> template.name = 'product-1'
     >>> template.default_uom = unit
     >>> template.type = 'goods'
     >>> template.salable = True
@@ -131,7 +131,7 @@ Create product::
 
 
     >>> template = ProductTemplate()
-    >>> template.name = 'product_salable'
+    >>> template.name = 'product-2'
     >>> template.default_uom = unit
     >>> template.type = 'goods'
     >>> template.salable = True
@@ -165,7 +165,7 @@ Create product::
     False
 
     >>> template = ProductTemplate()
-    >>> template.name = 'product_salable'
+    >>> template.name = 'product-4'
     >>> template.default_uom = unit
     >>> template.type = 'goods'
     >>> template.salable = True
@@ -183,7 +183,7 @@ Create product::
     True
 
     >>> template = ProductTemplate()
-    >>> template.name = 'product_salable'
+    >>> template.name = 'product-5'
     >>> template.default_uom = unit
     >>> template.type = 'goods'
     >>> template.salable = True
@@ -201,7 +201,7 @@ Create product::
     True
 
     >>> template = ProductTemplate()
-    >>> template.name = 'product_salable'
+    >>> template.name = 'product-6'
     >>> template.default_uom = unit
     >>> template.type = 'goods'
     >>> template.salable = True
@@ -213,7 +213,7 @@ Create product::
     True
 
     >>> template = ProductTemplate()
-    >>> template.name = 'product_salable'
+    >>> template.name = 'product-7'
     >>> template.default_uom = unit
     >>> template.type = 'goods'
     >>> template.salable = False
@@ -230,23 +230,12 @@ Create product::
     >>> template.company_salable
     False
 
-
-
-Create payment term::
-
-    >>> payment_term = create_payment_term()
-    >>> payment_term.save()
-
-Create an Inventory::
-
-
 Sale 1 products::
 
     >>> Sale = Model.get('sale.sale')
     >>> SaleLine = Model.get('sale.line')
     >>> sale = Sale()
     >>> sale.party = customer
-    >>> sale.payment_term = payment_term
     >>> sale.invoice_method = 'order'
     >>> sale_line = SaleLine()
     >>> sale.lines.append(sale_line)
@@ -258,7 +247,6 @@ Sale 1 products::
 
     >>> sale = Sale()
     >>> sale.party = customer
-    >>> sale.payment_term = payment_term
     >>> sale.invoice_method = 'order'
     >>> sale_line = SaleLine()
     >>> sale.lines.append(sale_line)
@@ -273,7 +261,6 @@ Sale 1 products::
 
     >>> sale = Sale()
     >>> sale.party = customer
-    >>> sale.payment_term = payment_term
     >>> sale.invoice_method = 'order'
     >>> sale_line = SaleLine()
     >>> sale.lines.append(sale_line)
@@ -288,7 +275,6 @@ Sale 1 products::
 
     >>> sale = Sale()
     >>> sale.party = customer
-    >>> sale.payment_term = payment_term
     >>> sale.invoice_method = 'order'
     >>> sale_line = SaleLine()
     >>> sale.lines.append(sale_line)
@@ -300,7 +286,6 @@ Sale 1 products::
 
     >>> sale = Sale()
     >>> sale.party = customer
-    >>> sale.payment_term = payment_term
     >>> sale.invoice_method = 'order'
     >>> sale_line = SaleLine()
     >>> sale.lines.append(sale_line)
@@ -312,7 +297,6 @@ Sale 1 products::
 
     >>> sale = Sale()
     >>> sale.party = customer
-    >>> sale.payment_term = payment_term
     >>> sale.invoice_method = 'order'
     >>> sale_line = SaleLine()
     >>> sale.lines.append(sale_line)
@@ -324,7 +308,6 @@ Sale 1 products::
 
     >>> sale = Sale()
     >>> sale.party = customer
-    >>> sale.payment_term = payment_term
     >>> sale.invoice_method = 'order'
     >>> sale_line = SaleLine()
     >>> sale.lines.append(sale_line)

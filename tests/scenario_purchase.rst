@@ -115,7 +115,7 @@ Create product::
     >>> ProductTemplate = Model.get('product.template')
 
     >>> template = ProductTemplate()
-    >>> template.name = 'product_salable'
+    >>> template.name = 'product-1'
     >>> template.default_uom = unit
     >>> template.type = 'goods'
     >>> template.purchasable = True
@@ -131,7 +131,7 @@ Create product::
 
 
     >>> template = ProductTemplate()
-    >>> template.name = 'product_purchasable'
+    >>> template.name = 'product-2'
     >>> template.default_uom = unit
     >>> template.type = 'goods'
     >>> template.purchasable = True
@@ -165,7 +165,7 @@ Create product::
     False
 
     >>> template = ProductTemplate()
-    >>> template.name = 'product_purchasable'
+    >>> template.name = 'product-4'
     >>> template.default_uom = unit
     >>> template.type = 'goods'
     >>> template.purchasable = True
@@ -183,7 +183,7 @@ Create product::
     True
 
     >>> template = ProductTemplate()
-    >>> template.name = 'product_purchasable'
+    >>> template.name = 'product-5'
     >>> template.default_uom = unit
     >>> template.type = 'goods'
     >>> template.purchasable = True
@@ -201,7 +201,7 @@ Create product::
     True
 
     >>> template = ProductTemplate()
-    >>> template.name = 'product_purchasable'
+    >>> template.name = 'product-6'
     >>> template.default_uom = unit
     >>> template.type = 'goods'
     >>> template.purchasable = True
@@ -213,7 +213,7 @@ Create product::
     True
 
     >>> template = ProductTemplate()
-    >>> template.name = 'product_purchasable'
+    >>> template.name = 'product-7'
     >>> template.default_uom = unit
     >>> template.type = 'goods'
     >>> template.purchasable = False
@@ -232,21 +232,12 @@ Create product::
 
 
 
-Create payment term::
-
-    >>> payment_term = create_payment_term()
-    >>> payment_term.save()
-
-Create an Inventory::
-
-
 Purchase 1 products::
 
     >>> Purchase = Model.get('purchase.purchase')
     >>> PurchaseLine = Model.get('purchase.line')
     >>> purchase = Purchase()
     >>> purchase.party = customer
-    >>> purchase.payment_term = payment_term
     >>> purchase.invoice_method = 'order'
     >>> purchase_line = PurchaseLine()
     >>> purchase.lines.append(purchase_line)
@@ -258,7 +249,6 @@ Purchase 1 products::
 
     >>> purchase = Purchase()
     >>> purchase.party = customer
-    >>> purchase.payment_term = payment_term
     >>> purchase.invoice_method = 'order'
     >>> purchase_line = PurchaseLine()
     >>> purchase.lines.append(purchase_line)
@@ -273,7 +263,6 @@ Purchase 1 products::
 
     >>> purchase = Purchase()
     >>> purchase.party = customer
-    >>> purchase.payment_term = payment_term
     >>> purchase.invoice_method = 'order'
     >>> purchase_line = PurchaseLine()
     >>> purchase.lines.append(purchase_line)
@@ -288,7 +277,6 @@ Purchase 1 products::
 
     >>> purchase = Purchase()
     >>> purchase.party = customer
-    >>> purchase.payment_term = payment_term
     >>> purchase.invoice_method = 'order'
     >>> purchase_line = PurchaseLine()
     >>> purchase.lines.append(purchase_line)
@@ -300,7 +288,6 @@ Purchase 1 products::
 
     >>> purchase = Purchase()
     >>> purchase.party = customer
-    >>> purchase.payment_term = payment_term
     >>> purchase.invoice_method = 'order'
     >>> purchase_line = PurchaseLine()
     >>> purchase.lines.append(purchase_line)
@@ -312,7 +299,6 @@ Purchase 1 products::
 
     >>> purchase = Purchase()
     >>> purchase.party = customer
-    >>> purchase.payment_term = payment_term
     >>> purchase.invoice_method = 'order'
     >>> purchase_line = PurchaseLine()
     >>> purchase.lines.append(purchase_line)
@@ -324,7 +310,6 @@ Purchase 1 products::
 
     >>> purchase = Purchase()
     >>> purchase.party = customer
-    >>> purchase.payment_term = payment_term
     >>> purchase.invoice_method = 'order'
     >>> purchase_line = PurchaseLine()
     >>> purchase.lines.append(purchase_line)

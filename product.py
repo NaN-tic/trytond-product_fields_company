@@ -12,24 +12,35 @@ class Template(metaclass=PoolMeta):
     company_salable = fields.Function(fields.Boolean('Company Salable'),
         'get_company_salable', searcher='search_company_salable')
 
+
+    @classmethod
+    def get_query(cls, templates):
+
+        template = Table('product_template')
+        company_template = Table('product_template_company_fields')
+
+        join = template.join(company_template, type_='LEFT')
+        join.condition = ((template.id == company_template.template))
+
+        select = join.select(join.left.id, company_template.salable,
+                join.right.company)
+
+        select.where = ((template.salable == True) &
+            ((company_template.salable == True) |
+             (company_template.salable == None)))
+
+        if templates:
+            select.where &= template.id.in_([p.id for p in templates])
+
+        return select
+
     @classmethod
     def get_company_salable(cls, templates, name):
-        tTable = Table('product_template')
-        ctTable = Table('product_template_company_fields')
         company = Transaction().context.get('company')
         transaction = Transaction()
         connection = transaction.connection
 
-        template = tTable
-        join = template.join(ctTable, type_='LEFT')
-        join.condition = ((join.left.id == ctTable.template))
-
-        select = join.select(join.left.id, join.right.salable,
-                join.right.company)
-        select.where = (join.left.id.in_([p.id for p in templates]) &
-            (join.left.salable == True) &
-            ((join.right.salable == True) | (join.right.salable == None)))
-
+        select = cls.get_query(templates)
         subselect = select.select(select.id, select.salable)
         subselect.where = ((select.company == company) |
             (select.company == None))
@@ -49,20 +60,9 @@ class Template(metaclass=PoolMeta):
 
     @classmethod
     def search_company_salable(cls, name, clause):
-        tTable = Table('product_template')
-        ctTable = Table('product_template_company_fields')
         company = Transaction().context.get('company')
 
-
-        template = tTable
-        join = template.join(ctTable, type_='LEFT')
-        join.condition = ((join.left.id == ctTable.template))
-
-        select = join.select(join.left.id, join.right.salable,
-                join.right.company)
-        select.where = ((join.left.salable == True) &
-            ((join.right.salable == True) | (join.right.salable == None)))
-
+        select = cls.get_query(None)
         subselect = select.select(select.id)
         subselect.where = ((select.company == company) |
             (select.company == None))
@@ -133,24 +133,32 @@ class TemplatePurchase(metaclass=PoolMeta):
     company_purchasable = fields.Function(fields.Boolean('Company Purchasable'),
         'get_company_purchasable', searcher='search_company_purchasable')
 
+    @classmethod
+    def get_purchase_query(cls, templates):
+        template = Table('product_template')
+        template_company = Table('product_template_company_fields')
+
+        join = template.join(template_company, type_='LEFT')
+        join.condition = ((template.id == template_company.template))
+
+        select = join.select(template.id, template_company.purchasable,
+                template_company.company)
+        select.where = ((template.purchasable== True) &
+            ((template_company.purchasable == True) |
+             (template_company.purchasable == None)))
+
+        if templates:
+            select.where &= template.id.in_([p.id for p in templates])
+
+        return select
 
     @classmethod
     def get_company_purchasable(cls, templates, name):
-        tTable = Table('product_template')
-        ctTable = Table('product_template_company_fields')
         company = Transaction().context.get('company')
         transaction = Transaction()
         connection = transaction.connection
 
-        template = tTable
-        join = template.join(ctTable, type_='LEFT')
-        join.condition = ((join.left.id == ctTable.template))
-
-        select = join.select(join.left.id, join.right.purchasable,
-                join.right.company)
-        select.where = (join.left.id.in_([p.id for p in templates]) &
-            (join.left.purchasable== True) &
-            ((join.right.purchasable == True) | (join.right.purchasable == None)))
+        select = cls.get_purchase_query(templates)
 
         subselect = select.select(select.id, select.purchasable)
         subselect.where = ((select.company == company) |
@@ -171,20 +179,8 @@ class TemplatePurchase(metaclass=PoolMeta):
 
     @classmethod
     def search_company_purchasable(cls, name, clause):
-        tTable = Table('product_template')
-        ctTable = Table('product_template_company_fields')
         company = Transaction().context.get('company')
-
-
-        template = tTable
-        join = template.join(ctTable, type_='LEFT')
-        join.condition = ((join.left.id == ctTable.template))
-
-        select = join.select(join.left.id, join.right.purchasable,
-                join.right.company)
-        select.where = ((join.left.purchasable == True) &
-            ((join.right.purchasable == True) | (join.right.purchasable == None)))
-
+        select = cls.get_purchase_query(None)
         subselect = select.select(select.id)
         subselect.where = ((select.company == company) |
             (select.company == None))
