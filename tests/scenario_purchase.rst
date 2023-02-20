@@ -21,7 +21,7 @@ Imports::
 
 Activate modules::
 
-    >>> config = activate_modules(['product_fields_company', 'purchase'])
+    >>> config = activate_modules(['purchase', 'product_fields_company'])
 
 Create company::
 
@@ -112,9 +112,9 @@ Create product::
 
     >>> ProductUom = Model.get('product.uom')
     >>> unit, = ProductUom.find([('name', '=', 'Unit')])
-    >>> ProductTemplate = Model.get('product.template')
+    >>> Template = Model.get('product.template')
 
-    >>> template = ProductTemplate()
+    >>> template = Template()
     >>> template.name = 'product-1'
     >>> template.default_uom = unit
     >>> template.type = 'goods'
@@ -130,7 +130,7 @@ Create product::
     True
 
 
-    >>> template = ProductTemplate()
+    >>> template = Template()
     >>> template.name = 'product-2'
     >>> template.default_uom = unit
     >>> template.type = 'goods'
@@ -146,7 +146,7 @@ Create product::
     False
 
 
-    >>> template = ProductTemplate()
+    >>> template = Template()
     >>> template.name = 'product-3'
     >>> template.default_uom = unit
     >>> template.type = 'goods'
@@ -164,7 +164,7 @@ Create product::
     >>> template.company_purchasable
     False
 
-    >>> template = ProductTemplate()
+    >>> template = Template()
     >>> template.name = 'product-4'
     >>> template.default_uom = unit
     >>> template.type = 'goods'
@@ -182,7 +182,7 @@ Create product::
     >>> template.company_purchasable
     True
 
-    >>> template = ProductTemplate()
+    >>> template = Template()
     >>> template.name = 'product-5'
     >>> template.default_uom = unit
     >>> template.type = 'goods'
@@ -200,7 +200,7 @@ Create product::
     >>> template.company_purchasable
     True
 
-    >>> template = ProductTemplate()
+    >>> template = Template()
     >>> template.name = 'product-6'
     >>> template.default_uom = unit
     >>> template.type = 'goods'
@@ -212,7 +212,7 @@ Create product::
     >>> template.company_purchasable
     True
 
-    >>> template = ProductTemplate()
+    >>> template = Template()
     >>> template.name = 'product-7'
     >>> template.default_uom = unit
     >>> template.type = 'goods'

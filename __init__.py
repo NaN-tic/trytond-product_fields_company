@@ -15,9 +15,9 @@ def register():
         SaleLine,
         module='product_fields_company', type_='model')
     Pool.register(
+        ProductPurchase,
         TemplatePurchase,
         ProductCompanyFieldsPurchase,
-        ProductPurchase,
         PurchaseLine,
         depends = ['purchase'],
         module='product_fields_company', type_='model')

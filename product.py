@@ -192,16 +192,16 @@ class ProductPurchase(metaclass=PoolMeta):
     __name__ = 'product.product'
 
     company_purchasable = fields.Function(fields.Boolean('Company Purchasable'),
-        'on_change_with_company_purchasable',
-        searcher='search_company_purchasable')
+        'get_company_purchasable',
+        searcher='search_product_company_purchasable')
 
 
     @fields.depends('template', '_parent_template.company_purchasable')
-    def on_change_with_company_purchasable(self, name=None):
+    def get_company_purchasable(self, name=None):
         return self.template and self.template.company_purchasable or False
 
     @classmethod
-    def search_company_purchasable(cls, name, clause):
+    def search_product_company_purchasable(cls, name, clause):
         return [('template.company_purchasable',) + tuple(clause[1:])]
 
 
