@@ -197,7 +197,7 @@ class ProductPurchase(metaclass=PoolMeta):
 
 
     @fields.depends('template', '_parent_template.company_purchasable')
-    def on_change_with_company_salable(self, name=None):
+    def on_change_with_company_purchasable(self, name=None):
         return self.template and self.template.company_purchasable or False
 
     @classmethod
