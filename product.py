@@ -89,7 +89,9 @@ class ProductCompanyFields(ModelSQL, ModelView):
     'Product Template Company Fields'
     __name__ = 'product.template.company_fields'
     template = fields.Many2One('product.template', 'Template',
-        ondelete='CASCADE', select=True, required=True)
+            context={
+                'company': Eval('company'),
+            }, depends=['company'], ondelete='CASCADE', select=True, required=True)
     company = fields.Many2One('company.company', 'Company', ondelete='CASCADE',
         select=True, required=True)
     salable = fields.Boolean('Salable', states={
