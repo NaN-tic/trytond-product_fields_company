@@ -13,7 +13,7 @@ class SaleLine(metaclass=PoolMeta):
     def __setup__(cls):
         super().__setup__()
         cls.product.domain += [('company_salable', '=' , True)]
-        cls.product.depends.append('company_salable')
+        cls.product.depends.add('company_salable')
 
     @fields.depends('product')
     def on_change_with_company_salable(self, name=None):

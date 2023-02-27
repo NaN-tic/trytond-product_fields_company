@@ -14,7 +14,7 @@ class PurchaseLine(metaclass=PoolMeta):
     def __setup__(cls):
         super().__setup__()
         cls.product.domain += [('company_purchasable', '=' , True)]
-        cls.product.depends.append('company_purchasable')
+        cls.product.depends.add('company_purchasable')
 
     @fields.depends('product')
     def on_change_with_company_purchasable(self, name=None):
