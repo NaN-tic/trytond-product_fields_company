@@ -14,6 +14,31 @@ this repository contains the full copyright notices and license terms. -->
           <field name="name">company_fields_tree</field>
           <field name="type">tree</field>
       </record>
+        <record model="ir.rule.group" id="rule_group_template_companies">
+            <field name="name">User in companies</field>
+            <field name="model" search="[('model', '=', 'product.template.company_fields')]"/>
+            <field name="global_p" eval="True"/>
+        </record>
+        <record model="ir.rule" id="rule_template_companies">
+            <field name="domain"
+                eval="[('company', 'in', Eval('companies', []))]"
+                pyson="1"/>
+            <field name="rule_group" ref="rule_group_template_companies"/>
+        </record>
+        <!-- Rule created to ignore rule_template_companies -->
+        <record model="ir.rule" id="rule_template_companies2">
+            <field name="domain"
+                eval="[('company', '!=', None)]"
+                pyson="1"/>
+            <field name="rule_group" ref="rule_group_template_companies"/>
+        </record>
+        <!-- Rule created to ignore rule_target_company1 -->
+        <record model="ir.rule" id="rule_template_companies3">
+            <field name="domain"
+                eval="[('company', 'in', [None, -1])]"
+                pyson="1"/>
+            <field name="rule_group" ref="rule_group_template_companies"/>
+        </record>
     </data>
 
     <data depends="purchase">

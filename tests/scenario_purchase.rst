@@ -37,6 +37,7 @@ Set employee::
     >>> employee_party = Party(name="Employee")
     >>> employee_party.save()
     >>> employee = Employee(party=employee_party)
+    >>> employee.company = company
     >>> employee.save()
     >>> user = User(config.user)
     >>> user.employees.append(employee)
