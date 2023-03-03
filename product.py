@@ -1,4 +1,4 @@
-from trytond.model import ModelView, ModelSQL, fields, Unique
+from trytond.model import Index, ModelView, ModelSQL, fields, Unique
 from trytond.pool import Pool, PoolMeta
 from trytond.transaction import Transaction
 from trytond.pyson import Eval
@@ -91,9 +91,9 @@ class ProductCompanyFields(ModelSQL, ModelView):
     template = fields.Many2One('product.template', 'Template',
             context={
                 'company': Eval('company'),
-            }, depends=['company'], ondelete='CASCADE', select=True, required=True)
+            }, depends=['company'], ondelete='CASCADE', required=True)
     company = fields.Many2One('company.company', 'Company', ondelete='CASCADE',
-        select=True, required=True)
+        required=True)
     salable = fields.Boolean('Salable', states={
         'readonly': ~Eval('template_salable', False)
         }, depends=['template_salable'])
@@ -107,11 +107,16 @@ class ProductCompanyFields(ModelSQL, ModelView):
     @classmethod
     def __setup__(cls):
         super().__setup__()
-        t = cls.__table__()
+        table = cls.__table__()
         cls._sql_constraints += [
-            ('template_company_uniq', Unique(t, t.template, t.company),
+            ('template_company_uniq', Unique(table, table.template,
+                    table.company),
                 'product_fields_company.msg_company_unique'),
         ]
+        cls._sql_indexes.update({
+                Index(table, (table.template, Index.Equality())),
+                Index(table, (table.company, Index.Equality())),
+                })
 
 
 class ProductCompanyFieldsPurchase(metaclass=PoolMeta):
