@@ -244,6 +244,7 @@ Purchase 1 products::
     >>> purchase.lines.append(purchase_line)
     >>> purchase_line.product = product_sc1
     >>> purchase_line.quantity = 2.0
+    >>> purchase_line.unit_price = Decimal('10')
     >>> purchase_line.company_purchasable
     True
     >>> purchase.click('quote')
@@ -255,6 +256,7 @@ Purchase 1 products::
     >>> purchase.lines.append(purchase_line)
     >>> purchase_line.product = product_sc2
     >>> purchase_line.quantity = 2.0
+    >>> purchase_line.unit_price = Decimal('10')
     >>> purchase_line.company_purchasable
     False
     >>> purchase.click('quote') # doctest: +IGNORE_EXCEPTION_DETAIL
@@ -269,6 +271,7 @@ Purchase 1 products::
     >>> purchase.lines.append(purchase_line)
     >>> purchase_line.product = product_sc2n1
     >>> purchase_line.quantity = 2.0
+    >>> purchase_line.unit_price = Decimal('10')
     >>> purchase_line.company_purchasable
     False
     >>> purchase.click('quote')# doctest: +IGNORE_EXCEPTION_DETAIL
@@ -283,6 +286,7 @@ Purchase 1 products::
     >>> purchase.lines.append(purchase_line)
     >>> purchase_line.product = product_sc2n2
     >>> purchase_line.quantity = 2.0
+    >>> purchase_line.unit_price = Decimal('10')
     >>> purchase_line.company_purchasable
     True
     >>> purchase.click('quote')
@@ -294,6 +298,7 @@ Purchase 1 products::
     >>> purchase.lines.append(purchase_line)
     >>> purchase_line.product = product_all
     >>> purchase_line.quantity = 2.0
+    >>> purchase_line.unit_price = Decimal('10')
     >>> purchase_line.company_purchasable
     True
     >>> purchase.click('quote')
@@ -305,6 +310,7 @@ Purchase 1 products::
     >>> purchase.lines.append(purchase_line)
     >>> purchase_line.product = product_none
     >>> purchase_line.quantity = 2.0
+    >>> purchase_line.unit_price = Decimal('10')
     >>> purchase_line.company_purchasable
     True
     >>> purchase.click('quote')
@@ -316,6 +322,7 @@ Purchase 1 products::
     >>> purchase.lines.append(purchase_line)
     >>> purchase_line.product = product_all_ns
     >>> purchase_line.quantity = 2.0
+    >>> purchase_line.unit_price = Decimal('10')
     >>> purchase_line.company_purchasable
     False
     >>> purchase.click('quote')# doctest: +IGNORE_EXCEPTION_DETAIL
