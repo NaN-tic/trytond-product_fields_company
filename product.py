@@ -1,8 +1,9 @@
 from trytond.model import Index, ModelView, ModelSQL, fields, Unique
-from trytond.pool import Pool, PoolMeta
+from trytond.pool import PoolMeta
 from trytond.transaction import Transaction
 from trytond.pyson import Eval
 from sql import Table
+
 
 class Template(metaclass=PoolMeta):
     __name__ = 'product.template'

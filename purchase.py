@@ -1,6 +1,6 @@
 from trytond.model import fields
 from trytond.pool import PoolMeta
-from trytond.pyson import Eval
+
 
 class PurchaseLine(metaclass=PoolMeta):
     __name__ = 'purchase.line'
