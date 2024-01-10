@@ -97,7 +97,7 @@ class ProductCompanyFields(ModelSQL, ModelView):
         required=True)
     salable = fields.Boolean('Salable', states={
         'readonly': ~Eval('template_salable', False)
-        }, depends=['template_salable'])
+        })
     template_salable = fields.Function(fields.Boolean('Template Salable'),
         'on_change_with_template_salable')
 
@@ -124,8 +124,7 @@ class ProductCompanyFieldsPurchase(metaclass=PoolMeta):
     __name__ = 'product.template.company_fields'
 
     purchasable = fields.Boolean('Purchasable', states={
-        'readonly': ~Eval('template_purchasable', False)},
-        depends=['template_purchasable'])
+        'readonly': ~Eval('template_purchasable', False)})
     template_purchasable = fields.Function(fields.Boolean(
         'Template Purchasable'),'on_change_with_template_purchasable')
 
