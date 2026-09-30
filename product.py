@@ -96,7 +96,7 @@ class ProductCompanyFields(ModelSQL, ModelView):
     company = fields.Many2One('company.company', 'Company', ondelete='CASCADE',
         required=True)
     salable = fields.Boolean('Salable', states={
-        'readonly': ~Eval('template_salable', False)
+        'editable': Eval('template_salable', False),
         })
     template_salable = fields.Function(fields.Boolean('Template Salable'),
         'on_change_with_template_salable')
@@ -124,7 +124,7 @@ class ProductCompanyFieldsPurchase(metaclass=PoolMeta):
     __name__ = 'product.template.company_fields'
 
     purchasable = fields.Boolean('Purchasable', states={
-        'readonly': ~Eval('template_purchasable', False)})
+        'editable': Eval('template_purchasable', False)})
     template_purchasable = fields.Function(fields.Boolean(
         'Template Purchasable'),'on_change_with_template_purchasable')
 
@@ -210,5 +210,4 @@ class ProductPurchase(metaclass=PoolMeta):
     @classmethod
     def search_product_company_purchasable(cls, name, clause):
         return [('template.company_purchasable',) + tuple(clause[1:])]
-
 
